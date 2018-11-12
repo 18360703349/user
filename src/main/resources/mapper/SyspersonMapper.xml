@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.userdemo.dao.SyspersonMapper" >
+  <resultMap id="BaseResultMap" type="com.userdemo.domian.Sysperson" >
+    <id column="Id" property="id" jdbcType="NVARCHAR" />
+    <result column="Name" property="name" jdbcType="NVARCHAR" />
+    <result column="MyName" property="myname" jdbcType="NVARCHAR" />
+    <result column="Password" property="password" jdbcType="NVARCHAR" />
+    <result column="SurePassword" property="surepassword" jdbcType="NVARCHAR" />
+    <result column="Sex" property="sex" jdbcType="NVARCHAR" />
+    <result column="SysDepartmentId" property="sysdepartmentid" jdbcType="NVARCHAR" />
+    <result column="Position" property="position" jdbcType="NVARCHAR" />
+    <result column="MobilePhoneNumber" property="mobilephonenumber" jdbcType="NVARCHAR" />
+    <result column="PhoneNumber" property="phonenumber" jdbcType="NVARCHAR" />
+    <result column="Province" property="province" jdbcType="NVARCHAR" />
+    <result column="City" property="city" jdbcType="NVARCHAR" />
+    <result column="Village" property="village" jdbcType="NVARCHAR" />
+    <result column="Address" property="address" jdbcType="NVARCHAR" />
+    <result column="EmailAddress" property="emailaddress" jdbcType="NVARCHAR" />
+    <result column="Remark" property="remark" jdbcType="NVARCHAR" />
+    <result column="State" property="state" jdbcType="NVARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="CreatePerson" property="createperson" jdbcType="NVARCHAR" />
+    <result column="UpdateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="LogonNum" property="logonnum" jdbcType="INTEGER" />
+    <result column="LogonTime" property="logontime" jdbcType="TIMESTAMP" />
+    <result column="LogonIP" property="logonip" jdbcType="NVARCHAR" />
+    <result column="LastLogonTime" property="lastlogontime" jdbcType="TIMESTAMP" />
+    <result column="LastLogonIP" property="lastlogonip" jdbcType="NVARCHAR" />
+    <result column="PageStyle" property="pagestyle" jdbcType="NVARCHAR" />
+    <result column="UpdatePerson" property="updateperson" jdbcType="NVARCHAR" />
+    <result column="HDpic" property="hdpic" jdbcType="NVARCHAR" />
+    <result column="UnitId" property="unitid" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.userdemo.domian.Sysperson" extends="BaseResultMap" >
+    <result column="Version" property="version" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Name, MyName, Password, SurePassword, Sex, SysDepartmentId, Position, MobilePhoneNumber, 
+    PhoneNumber, Province, City, Village, Address, EmailAddress, Remark, State, CreateTime, 
+    CreatePerson, UpdateTime, LogonNum, LogonTime, LogonIP, LastLogonTime, LastLogonIP, 
+    PageStyle, UpdatePerson, HDpic, UnitId
+  </sql>
+  <sql id="Blob_Column_List" >
+    Version
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sysperson
+    where Id = #{id,jdbcType=NVARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sysperson
+    where Id = #{id,jdbcType=NVARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.userdemo.domian.Sysperson" >
+    insert into sysperson (Id, Name, MyName, 
+      Password, SurePassword, Sex, 
+      SysDepartmentId, Position, MobilePhoneNumber, 
+      PhoneNumber, Province, City, 
+      Village, Address, EmailAddress, 
+      Remark, State, CreateTime, 
+      CreatePerson, UpdateTime, LogonNum, 
+      LogonTime, LogonIP, LastLogonTime, 
+      LastLogonIP, PageStyle, UpdatePerson, 
+      HDpic, UnitId, Version
+      )
+    values (#{id,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{myname,jdbcType=NVARCHAR}, 
+      #{password,jdbcType=NVARCHAR}, #{surepassword,jdbcType=NVARCHAR}, #{sex,jdbcType=NVARCHAR}, 
+      #{sysdepartmentid,jdbcType=NVARCHAR}, #{position,jdbcType=NVARCHAR}, #{mobilephonenumber,jdbcType=NVARCHAR}, 
+      #{phonenumber,jdbcType=NVARCHAR}, #{province,jdbcType=NVARCHAR}, #{city,jdbcType=NVARCHAR}, 
+      #{village,jdbcType=NVARCHAR}, #{address,jdbcType=NVARCHAR}, #{emailaddress,jdbcType=NVARCHAR}, 
+      #{remark,jdbcType=NVARCHAR}, #{state,jdbcType=NVARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{createperson,jdbcType=NVARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{logonnum,jdbcType=INTEGER}, 
+      #{logontime,jdbcType=TIMESTAMP}, #{logonip,jdbcType=NVARCHAR}, #{lastlogontime,jdbcType=TIMESTAMP}, 
+      #{lastlogonip,jdbcType=NVARCHAR}, #{pagestyle,jdbcType=NVARCHAR}, #{updateperson,jdbcType=NVARCHAR}, 
+      #{hdpic,jdbcType=NVARCHAR}, #{unitid,jdbcType=NVARCHAR}, #{version,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.userdemo.domian.Sysperson" >
+    insert into sysperson
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="myname != null" >
+        MyName,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="surepassword != null" >
+        SurePassword,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="sysdepartmentid != null" >
+        SysDepartmentId,
+      </if>
+      <if test="position != null" >
+        Position,
+      </if>
+      <if test="mobilephonenumber != null" >
+        MobilePhoneNumber,
+      </if>
+      <if test="phonenumber != null" >
+        PhoneNumber,
+      </if>
+      <if test="province != null" >
+        Province,
+      </if>
+      <if test="city != null" >
+        City,
+      </if>
+      <if test="village != null" >
+        Village,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="emailaddress != null" >
+        EmailAddress,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="createperson != null" >
+        CreatePerson,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="logonnum != null" >
+        LogonNum,
+      </if>
+      <if test="logontime != null" >
+        LogonTime,
+      </if>
+      <if test="logonip != null" >
+        LogonIP,
+      </if>
+      <if test="lastlogontime != null" >
+        LastLogonTime,
+      </if>
+      <if test="lastlogonip != null" >
+        LastLogonIP,
+      </if>
+      <if test="pagestyle != null" >
+        PageStyle,
+      </if>
+      <if test="updateperson != null" >
+        UpdatePerson,
+      </if>
+      <if test="hdpic != null" >
+        HDpic,
+      </if>
+      <if test="unitid != null" >
+        UnitId,
+      </if>
+      <if test="version != null" >
+        Version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="myname != null" >
+        #{myname,jdbcType=NVARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="surepassword != null" >
+        #{surepassword,jdbcType=NVARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=NVARCHAR},
+      </if>
+      <if test="sysdepartmentid != null" >
+        #{sysdepartmentid,jdbcType=NVARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=NVARCHAR},
+      </if>
+      <if test="mobilephonenumber != null" >
+        #{mobilephonenumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=NVARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=NVARCHAR},
+      </if>
+      <if test="village != null" >
+        #{village,jdbcType=NVARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=NVARCHAR},
+      </if>
+      <if test="emailaddress != null" >
+        #{emailaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createperson != null" >
+        #{createperson,jdbcType=NVARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logonnum != null" >
+        #{logonnum,jdbcType=INTEGER},
+      </if>
+      <if test="logontime != null" >
+        #{logontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logonip != null" >
+        #{logonip,jdbcType=NVARCHAR},
+      </if>
+      <if test="lastlogontime != null" >
+        #{lastlogontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogonip != null" >
+        #{lastlogonip,jdbcType=NVARCHAR},
+      </if>
+      <if test="pagestyle != null" >
+        #{pagestyle,jdbcType=NVARCHAR},
+      </if>
+      <if test="updateperson != null" >
+        #{updateperson,jdbcType=NVARCHAR},
+      </if>
+      <if test="hdpic != null" >
+        #{hdpic,jdbcType=NVARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=NVARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.userdemo.domian.Sysperson" >
+    update sysperson
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="myname != null" >
+        MyName = #{myname,jdbcType=NVARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="surepassword != null" >
+        SurePassword = #{surepassword,jdbcType=NVARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=NVARCHAR},
+      </if>
+      <if test="sysdepartmentid != null" >
+        SysDepartmentId = #{sysdepartmentid,jdbcType=NVARCHAR},
+      </if>
+      <if test="position != null" >
+        Position = #{position,jdbcType=NVARCHAR},
+      </if>
+      <if test="mobilephonenumber != null" >
+        MobilePhoneNumber = #{mobilephonenumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        PhoneNumber = #{phonenumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="province != null" >
+        Province = #{province,jdbcType=NVARCHAR},
+      </if>
+      <if test="city != null" >
+        City = #{city,jdbcType=NVARCHAR},
+      </if>
+      <if test="village != null" >
+        Village = #{village,jdbcType=NVARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=NVARCHAR},
+      </if>
+      <if test="emailaddress != null" >
+        EmailAddress = #{emailaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createperson != null" >
+        CreatePerson = #{createperson,jdbcType=NVARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logonnum != null" >
+        LogonNum = #{logonnum,jdbcType=INTEGER},
+      </if>
+      <if test="logontime != null" >
+        LogonTime = #{logontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logonip != null" >
+        LogonIP = #{logonip,jdbcType=NVARCHAR},
+      </if>
+      <if test="lastlogontime != null" >
+        LastLogonTime = #{lastlogontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogonip != null" >
+        LastLogonIP = #{lastlogonip,jdbcType=NVARCHAR},
+      </if>
+      <if test="pagestyle != null" >
+        PageStyle = #{pagestyle,jdbcType=NVARCHAR},
+      </if>
+      <if test="updateperson != null" >
+        UpdatePerson = #{updateperson,jdbcType=NVARCHAR},
+      </if>
+      <if test="hdpic != null" >
+        HDpic = #{hdpic,jdbcType=NVARCHAR},
+      </if>
+      <if test="unitid != null" >
+        UnitId = #{unitid,jdbcType=NVARCHAR},
+      </if>
+      <if test="version != null" >
+        Version = #{version,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=NVARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.userdemo.domian.Sysperson" >
+    update sysperson
+    set Name = #{name,jdbcType=NVARCHAR},
+      MyName = #{myname,jdbcType=NVARCHAR},
+      Password = #{password,jdbcType=NVARCHAR},
+      SurePassword = #{surepassword,jdbcType=NVARCHAR},
+      Sex = #{sex,jdbcType=NVARCHAR},
+      SysDepartmentId = #{sysdepartmentid,jdbcType=NVARCHAR},
+      Position = #{position,jdbcType=NVARCHAR},
+      MobilePhoneNumber = #{mobilephonenumber,jdbcType=NVARCHAR},
+      PhoneNumber = #{phonenumber,jdbcType=NVARCHAR},
+      Province = #{province,jdbcType=NVARCHAR},
+      City = #{city,jdbcType=NVARCHAR},
+      Village = #{village,jdbcType=NVARCHAR},
+      Address = #{address,jdbcType=NVARCHAR},
+      EmailAddress = #{emailaddress,jdbcType=NVARCHAR},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      State = #{state,jdbcType=NVARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      CreatePerson = #{createperson,jdbcType=NVARCHAR},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      LogonNum = #{logonnum,jdbcType=INTEGER},
+      LogonTime = #{logontime,jdbcType=TIMESTAMP},
+      LogonIP = #{logonip,jdbcType=NVARCHAR},
+      LastLogonTime = #{lastlogontime,jdbcType=TIMESTAMP},
+      LastLogonIP = #{lastlogonip,jdbcType=NVARCHAR},
+      PageStyle = #{pagestyle,jdbcType=NVARCHAR},
+      UpdatePerson = #{updateperson,jdbcType=NVARCHAR},
+      HDpic = #{hdpic,jdbcType=NVARCHAR},
+      UnitId = #{unitid,jdbcType=NVARCHAR},
+      Version = #{version,jdbcType=VARBINARY}
+    where Id = #{id,jdbcType=NVARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.userdemo.domian.Sysperson" >
+    update sysperson
+    set Name = #{name,jdbcType=NVARCHAR},
+      MyName = #{myname,jdbcType=NVARCHAR},
+      Password = #{password,jdbcType=NVARCHAR},
+      SurePassword = #{surepassword,jdbcType=NVARCHAR},
+      Sex = #{sex,jdbcType=NVARCHAR},
+      SysDepartmentId = #{sysdepartmentid,jdbcType=NVARCHAR},
+      Position = #{position,jdbcType=NVARCHAR},
+      MobilePhoneNumber = #{mobilephonenumber,jdbcType=NVARCHAR},
+      PhoneNumber = #{phonenumber,jdbcType=NVARCHAR},
+      Province = #{province,jdbcType=NVARCHAR},
+      City = #{city,jdbcType=NVARCHAR},
+      Village = #{village,jdbcType=NVARCHAR},
+      Address = #{address,jdbcType=NVARCHAR},
+      EmailAddress = #{emailaddress,jdbcType=NVARCHAR},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      State = #{state,jdbcType=NVARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      CreatePerson = #{createperson,jdbcType=NVARCHAR},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      LogonNum = #{logonnum,jdbcType=INTEGER},
+      LogonTime = #{logontime,jdbcType=TIMESTAMP},
+      LogonIP = #{logonip,jdbcType=NVARCHAR},
+      LastLogonTime = #{lastlogontime,jdbcType=TIMESTAMP},
+      LastLogonIP = #{lastlogonip,jdbcType=NVARCHAR},
+      PageStyle = #{pagestyle,jdbcType=NVARCHAR},
+      UpdatePerson = #{updateperson,jdbcType=NVARCHAR},
+      HDpic = #{hdpic,jdbcType=NVARCHAR},
+      UnitId = #{unitid,jdbcType=NVARCHAR}
+    where Id = #{id,jdbcType=NVARCHAR}
+  </update>
+</mapper>
