@@ -1,1 +1,1 @@
-# user This is a String boot + Mybatis + druid + generator project
+# user This is a Spring boot + Mybatis + druid + generator project
